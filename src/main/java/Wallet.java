@@ -12,9 +12,13 @@ public class Wallet implements Income, Expenses, Budget {
     }
 
     public void addIncome(String incomeName, Integer incomeValue) {
-        income.put(incomeName, Collections.singletonList(incomeValue));
-        System.out.println("Доходы добавлены");
-
+        if ((incomeValue < 0)) {
+            System.out.println("Сумма не может быть больше нуля или словом");
+        }
+        else {
+            income.put(incomeName, Collections.singletonList(incomeValue));
+            System.out.println("Доходы добавлены");
+        }
 
     }
     public void addExpenses(String expenseName, int expenseValue) {

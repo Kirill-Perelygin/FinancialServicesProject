@@ -25,8 +25,8 @@ public class Main extends Users {
                         System.out.println("Введите пароль");
                         String password = scanner.next();
                         if (checkUser(login, password)) {
-                            isLoggedIn = true;
                             System.out.println("Привет, " + login + "!. Что будем делать?");
+                            isLoggedIn = true;
                             System.out.println("1. Добавить доходы");
                             System.out.println("2. Добавить расходы");
                             System.out.println("3. Установить бюджет");
@@ -52,7 +52,12 @@ public class Main extends Users {
                                     String expenseName = scanner.next();
                                     System.out.println("Введите сумму расходов");
                                     int expenseValue = scanner.nextInt();
-                                    wallet.addExpenses(expenseName, expenseValue);
+                                    if (expenseValue instanceof Integer) {
+                                        wallet.addExpenses(expenseName, expenseValue);
+                                    }
+                                    else {
+                                        System.out.println("Некорректный тип данных");
+                                    }
                                     System.out.println("Добавить еще?");
                                     System.out.println("1. Да");
                                     System.out.println("2. Нет");
