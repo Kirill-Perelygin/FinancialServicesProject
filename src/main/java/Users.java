@@ -9,12 +9,14 @@ public class Users {
         System.out.println("Пользователь создан");
     }
 
-    public static void checkUser(String login, String password) {
+    public static boolean checkUser(String login, String password) {
        if (users.containsKey(login) && users.containsValue(password)) {
            System.out.println("Добро пожаловать");
+       return true;
        }
        else {
            System.out.println("Такого пользователя не знаем");
+           return false;
        }
     }
 
