@@ -4,6 +4,7 @@ public class Main extends Users {
 
     public static boolean isAuthorised;
     public static boolean isLoggedIn;
+    public static boolean isAddingOver;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -33,12 +34,46 @@ public class Main extends Users {
                             int secondChoice = scanner.nextInt();
                             switch (secondChoice){
                                 case(1): {
-                                    break;
+                                    isAddingOver = true;
+                                    while (isAddingOver) {
+                                        System.out.println("Введите категорию дохода");
+                                        String incomeName = scanner.next();
+                                        System.out.println("Введите сумму дохода");
+                                        Integer incomeValue = scanner.nextInt();
+                                        wallet.addIncome(incomeName, incomeValue);
+
+                                        break;
+                                    }
                                 }
                                 case(2): {
+                                    isAddingOver = true;
+                                    while(isAddingOver){
+                                    System.out.println("Введите категорию расходов");
+                                    String expenseName = scanner.next();
+                                    System.out.println("Введите сумму расходов");
+                                    int expenseValue = scanner.nextInt();
+                                    wallet.addExpenses(expenseName, expenseValue);
+                                    System.out.println("Добавить еще?");
+                                    System.out.println("1. Да");
+                                    System.out.println("2. Нет");
+                                    int thirdChoice = scanner.nextInt();
+                                    switch (thirdChoice) {
+                                        case (1): {
+                                            break;
+                                        }
+                                        case (2): {
+                                            isAddingOver = false;
+                                        }
+                                        default: {
+
+                                        }
+                                    }
+                                    }
                                     break;
                                 }
                                 case(3): {
+                                    isAddingOver = true;
+
                                     break;
                                 }
                                 case(4): {

@@ -4,5 +4,5 @@ import java.util.List;
 public interface Expenses {
     public LinkedHashMap<String, List<Integer>> expenses = new LinkedHashMap<>();
 
-    void addExpenses();
+    void addExpenses(String expenseName, int expenseValue);
 }

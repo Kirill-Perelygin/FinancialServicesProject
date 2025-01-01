@@ -6,5 +6,5 @@ public interface Income {
     public LinkedHashMap<String, List<Integer>> income = new LinkedHashMap<>();
     void getTotalIncome();
 
-    void addIncome();
+    void addIncome(String incomeName, Integer incomeValue);
 }

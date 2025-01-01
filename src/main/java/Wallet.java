@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 
 public class Wallet implements Income, Expenses, Budget {
@@ -10,15 +11,18 @@ public class Wallet implements Income, Expenses, Budget {
 
     }
 
-    public void addIncome() {
+    public void addIncome(String incomeName, Integer incomeValue) {
+        income.put(incomeName, Collections.singletonList(incomeValue));
+        System.out.println("Доходы добавлены");
+
 
     }
-    public void addExpenses() {
+    public void addExpenses(String expenseName, int expenseValue) {
 
     }
 
     public void setBudget(){
-        
+
     }
 
     public static void main(String[] args) {
