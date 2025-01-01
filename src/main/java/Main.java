@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Main extends Users {
 
     public static boolean isAuthorised;
+    public static boolean isLoggedIn;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -23,7 +24,31 @@ public class Main extends Users {
                         System.out.println("Введите пароль");
                         String password = scanner.next();
                         if (checkUser(login, password)) {
-                            System.out.println("Нормис");
+                            isLoggedIn = true;
+                            System.out.println("Привет, " + login + "!. Что будем делать?");
+                            System.out.println("1. Добавить доходы");
+                            System.out.println("2. Добавить расходы");
+                            System.out.println("3. Установить бюджет");
+                            System.out.println("4. Вернуться назад");
+                            int secondChoice = scanner.nextInt();
+                            switch (secondChoice){
+                                case(1): {
+                                    break;
+                                }
+                                case(2): {
+                                    break;
+                                }
+                                case(3): {
+                                    break;
+                                }
+                                case(4): {
+                                    isLoggedIn = false;
+                                    System.out.println("До встречи!");
+                                    break;
+                                }
+                                default: ;
+
+                            }
                         } else {
                             isAuthorised = false;
                         }

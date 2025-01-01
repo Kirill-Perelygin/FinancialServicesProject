@@ -17,6 +17,10 @@ public class Wallet implements Income, Expenses, Budget {
 
     }
 
+    public void setBudget(){
+        
+    }
+
     public static void main(String[] args) {
 
     }
