@@ -10,6 +10,8 @@ public class Wallet implements Income, Expenses, Budget {
     public void getTotalIncome() {
 
     }
+    public void showIncomeByCategories(String login, Integer value) {
+    }
 
     public void addIncome(String incomeName, Integer incomeValue) {
         if ((incomeValue < 0)) {
