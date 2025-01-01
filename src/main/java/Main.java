@@ -5,6 +5,15 @@ public class Main extends Users {
     public static boolean isAuthorised;
     public static boolean isLoggedIn;
     public static boolean isAddingOver;
+    public static int firstMenuChoice;
+    public static int choiceWhenLogged;
+    public static int choiceToRepeatInformationAdding;
+    public static String login;
+    public static String password;
+    public static String incomeName;
+    public static Integer incomeValue;
+    public static String expenseName;
+    public static Integer expenseValue;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -17,13 +26,13 @@ public class Main extends Users {
                 System.out.println("1. Авторизоваться");
                 System.out.println("2. Регистрироваться");
                 System.out.println("3. Вернуться на главную");
-                int choice = scanner.nextInt();
-                switch (choice) {
+                firstMenuChoice = scanner.nextInt();
+                switch (firstMenuChoice) {
                     case (1): {
                         System.out.println("Введите логин");
-                        String login = scanner.next();
+                        login = scanner.next();
                         System.out.println("Введите пароль");
-                        String password = scanner.next();
+                        password = scanner.next();
                         if (checkUser(login, password)) {
                             System.out.println("Привет, " + login + "!. Что будем делать?");
                             isLoggedIn = true;
@@ -31,15 +40,15 @@ public class Main extends Users {
                             System.out.println("2. Добавить расходы");
                             System.out.println("3. Установить бюджет");
                             System.out.println("4. Вернуться назад");
-                            int secondChoice = scanner.nextInt();
-                            switch (secondChoice){
+                            choiceWhenLogged = scanner.nextInt();
+                            switch (choiceWhenLogged){
                                 case(1): {
                                     isAddingOver = true;
                                     while (isAddingOver) {
                                         System.out.println("Введите категорию дохода");
-                                        String incomeName = scanner.next();
+                                        incomeName = scanner.next();
                                         System.out.println("Введите сумму дохода");
-                                        Integer incomeValue = scanner.nextInt();
+                                        incomeValue = scanner.nextInt();
                                         wallet.addIncome(incomeName, incomeValue);
 
                                         break;
@@ -49,20 +58,15 @@ public class Main extends Users {
                                     isAddingOver = true;
                                     while(isAddingOver){
                                     System.out.println("Введите категорию расходов");
-                                    String expenseName = scanner.next();
+                                    expenseName = scanner.next();
                                     System.out.println("Введите сумму расходов");
-                                    int expenseValue = scanner.nextInt();
-                                    if (expenseValue instanceof Integer) {
-                                        wallet.addExpenses(expenseName, expenseValue);
-                                    }
-                                    else {
-                                        System.out.println("Некорректный тип данных");
-                                    }
+                                    expenseValue = scanner.nextInt();
+                                    wallet.addExpenses(expenseName, expenseValue);
                                     System.out.println("Добавить еще?");
                                     System.out.println("1. Да");
                                     System.out.println("2. Нет");
-                                    int thirdChoice = scanner.nextInt();
-                                    switch (thirdChoice) {
+                                    choiceToRepeatInformationAdding = scanner.nextInt();
+                                    switch (choiceToRepeatInformationAdding) {
                                         case (1): {
                                             break;
                                         }
@@ -96,9 +100,9 @@ public class Main extends Users {
                     }
                     case (2): {
                         System.out.println("Введите логин");
-                        String login = scanner.next();
+                        login = scanner.next();
                         System.out.println("Введите пароль");
-                        String password = scanner.next();
+                        password = scanner.next();
                         createrUser(login, password);
                         break;
                     }
