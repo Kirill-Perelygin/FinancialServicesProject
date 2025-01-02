@@ -18,100 +18,57 @@ public class Main extends Users {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Wallet wallet = new Wallet();
-            System.out.println("Добро пожаловать");
-            isAuthorised = true;
-            while (isAuthorised) {
-                System.out.println("Что будем делать?");
-                System.out.println("1. Авторизоваться");
-                System.out.println("2. Регистрироваться");
-                System.out.println("3. Вернуться на главную");
-                firstMenuChoice = scanner.nextInt();
-                switch (firstMenuChoice) {
-                    case (1): {
-                        System.out.println("Введите логин");
-                        login = scanner.next();
-                        System.out.println("Введите пароль");
-                        password = scanner.next();
-                        if (checkUser(login, password)) {
-                            System.out.println("Привет, " + login + "!. Что будем делать?");
-                            isLoggedIn = true;
+        System.out.println("Добро пожаловать");
+        isAuthorised = false;
+        while (!isAuthorised) {
+            System.out.println("Что будем делать?");
+            System.out.println("1. Авторизоваться");
+            System.out.println("2. Регистрироваться");
+            firstMenuChoice = scanner.nextInt();
+            switch (firstMenuChoice) {
+                case (1): {
+                    System.out.println("Введите логин");
+                    login = scanner.next();
+                    System.out.println("Введите пароль");
+                    password = scanner.next();
+                    if (checkUser(login, password)) {
+                        System.out.println("Привет, " + login + "!. Что будем делать?");
+                        isLoggedIn = true;
+                        isAddingOver = true;
+                        while (isAddingOver) {
                             System.out.println("1. Добавить доходы");
                             System.out.println("2. Добавить расходы");
                             System.out.println("3. Установить бюджет");
                             System.out.println("4. Вернуться назад");
                             choiceWhenLogged = scanner.nextInt();
-                            switch (choiceWhenLogged){
-                                case(1): {
-                                    isAddingOver = true;
-                                    while (isAddingOver) {
-                                        System.out.println("Введите категорию дохода");
-                                        incomeName = scanner.next();
-                                        System.out.println("Введите сумму дохода");
-                                        incomeValue = scanner.nextInt();
-                                        wallet.addIncome(login,incomeName, incomeValue);
-
-                                        break;
-                                    }
-                                }
-                                case(2): {
-                                    isAddingOver = true;
-                                    while(isAddingOver){
-                                    System.out.println("Введите категорию расходов");
-                                    expenseName = scanner.next();
-                                    System.out.println("Введите сумму расходов");
-                                    expenseValue = scanner.nextInt();
-                                    wallet.addExpenses(expenseName, expenseValue);
-                                    System.out.println("Добавить еще?");
-                                    System.out.println("1. Да");
-                                    System.out.println("2. Нет");
-                                    choiceToRepeatInformationAdding = scanner.nextInt();
-                                    switch (choiceToRepeatInformationAdding) {
-                                        case (1): {
-                                            break;
-                                        }
-                                        case (2): {
-                                            isAddingOver = false;
-                                        }
-                                        default: {
-
-                                        }
-                                    }
-                                    }
+                            switch (choiceWhenLogged) {
+                                case (1): {
+                                    System.out.println("Введите категорию дохода");
+                                    incomeName = scanner.next();
+                                    System.out.println("Введите сумму дохода");
+                                    incomeValue = scanner.nextInt();
+                                    wallet.addIncome(login, incomeName, incomeValue);
+                                    isAddingOver = false;
                                     break;
                                 }
-                                case(3): {
-                                    isAddingOver = true;
-
-                                    break;
-                                }
-                                case(4): {
+                                case (4): {
                                     isLoggedIn = false;
-                                    System.out.println("До встречи!");
                                     break;
                                 }
-                                default: ;
-
                             }
-                        } else {
-                            isAuthorised = false;
+                            break;
                         }
-                        break;
                     }
-                    case (2): {
-                        System.out.println("Введите логин");
-                        login = scanner.next();
-                        System.out.println("Введите пароль");
-                        password = scanner.next();
-                        createrUser(login, password);
-                        break;
-                    }
-                    case (3): {
-
-                    }
-                    default: {
-
-                    }
+                }
+                case (2): {
+                    System.out.println("Введите логин");
+                    login = scanner.next();
+                    System.out.println("Введите пароль");
+                    password = scanner.next();
+                    createrUser(login, password);
+                    break;
                 }
             }
         }
     }
+}

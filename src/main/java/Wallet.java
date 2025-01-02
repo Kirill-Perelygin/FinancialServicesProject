@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashMap;
+import java.util.*;
 
 public class Wallet implements Income, Expenses, Budget {
     public static String incomeBoundary;
@@ -18,8 +16,11 @@ public class Wallet implements Income, Expenses, Budget {
             System.out.println("Сумма не может быть больше нуля или словом");
         }
         else {
-            income.put(incomeName, Collections.singletonList(incomeValue));
+            income.put(incomeName, Arrays.asList(incomeValue));
             System.out.println("Доходы добавлены");
+          //  for (Map.Entry<String, List<Integer>> entry : income.entrySet()) {
+        //        System.out.println("Ключ: " + entry.getKey() + ", Значение: " + entry.getValue());
+         //   }
         }
 
     }
