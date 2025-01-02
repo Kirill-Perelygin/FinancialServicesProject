@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 public class Wallet implements Income, Expenses, Budget {
     public static String incomeBoundary;
 
-    public static LinkedHashMap<String, ArrayList> wallet = new LinkedHashMap<>();
+    public static LinkedHashMap<String, LinkedHashMap<String, Integer>> wallet = new LinkedHashMap<>();
 
     public void getTotalIncome() {
 
@@ -13,7 +13,7 @@ public class Wallet implements Income, Expenses, Budget {
     public void showIncomeByCategories(String login, Integer value) {
     }
 
-    public void addIncome(String incomeName, Integer incomeValue) {
+    public void addIncome(String login, String incomeName, Integer incomeValue) {
         if ((incomeValue < 0)) {
             System.out.println("Сумма не может быть больше нуля или словом");
         }

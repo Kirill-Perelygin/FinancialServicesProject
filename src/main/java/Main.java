@@ -18,7 +18,6 @@ public class Main extends Users {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Wallet wallet = new Wallet();
-        while (true) {
             System.out.println("Добро пожаловать");
             isAuthorised = true;
             while (isAuthorised) {
@@ -49,7 +48,7 @@ public class Main extends Users {
                                         incomeName = scanner.next();
                                         System.out.println("Введите сумму дохода");
                                         incomeValue = scanner.nextInt();
-                                        wallet.addIncome(incomeName, incomeValue);
+                                        wallet.addIncome(login,incomeName, incomeValue);
 
                                         break;
                                     }
@@ -116,4 +115,3 @@ public class Main extends Users {
             }
         }
     }
-}

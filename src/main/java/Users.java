@@ -1,12 +1,18 @@
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class Users {
-
+    static Wallet wallet = new Wallet();
     public static HashMap<String, String> users = new HashMap<>();
 
     public static void createrUser(String login, String password) {
-        users.put(login,password);
-        System.out.println("Пользователь создан");
+        if (users.containsKey(login)){
+            System.out.println("Такой пользователь уже существует, придумайте себе другой логин");
+        }
+        else {
+            users.put(login, password);
+            System.out.println("Пользователь создан");
+        }
     }
 
     public static boolean checkUser(String login, String password) {
