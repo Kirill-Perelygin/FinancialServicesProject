@@ -74,6 +74,7 @@ public class Main extends Users {
                                     System.out.println("Вся информация");
                                     wallet.getTotalIncome();
                                     wallet.getTotalExpenses();
+                                    wallet.showBudgetDifference(expenseName);
                                     break;
                                 }
                                 case (5): {
