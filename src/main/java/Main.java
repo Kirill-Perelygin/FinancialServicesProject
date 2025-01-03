@@ -72,7 +72,7 @@ public class Main extends Users {
                                 case (4): {
                                     System.out.println("Вся информация");
                                     wallet.getTotalIncome();
-                                    wallet.getTotalExpense();
+                                    wallet.getTotalExpenses();
                                     break;
                                 }
                                 case (5): {

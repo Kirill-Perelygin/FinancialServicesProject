@@ -20,7 +20,7 @@ public class Wallet implements Income, Expenses, Budget {
     }
 
 
-    public void getTotalExpense(){
+    public void getTotalExpenses(){
         int totalSum2 = expenses.values().stream()
                 .flatMap(List::stream)
                 .mapToInt(Integer::intValue)
