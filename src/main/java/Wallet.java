@@ -61,13 +61,18 @@ public class Wallet implements Income, Expenses, Budget {
         }
     }
 
-    public void setBudget(){
-
+    public void setBudget(String budgetName, Integer budgetValue){
+        if (budgetValue < 0) {
+            System.out.println("Сумма не может быть меньше нуля.");
+        } else {
+            if (!expenses.containsKey(budgetName)) {
+                expenses.put(budgetName, new ArrayList<>(Collections.singletonList(budgetValue)));
+            } else {
+                expenses.get(budgetName).add(budgetValue);
+            }
+        }
     }
 
     public static void main(String[] args) {
-
     }
-
-
 }

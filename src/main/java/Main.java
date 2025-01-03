@@ -14,6 +14,8 @@ public class Main extends Users {
     public static Integer incomeValue;
     public static String expenseName;
     public static Integer expenseValue;
+    public static String budgetName;
+    public static Integer budgetValue;
 
     // TODO не работают нормально переходы в меню
     // TODO добавить бюджет к каждой категории расходов
@@ -67,6 +69,11 @@ public class Main extends Users {
                                 }
                                 case (3): {
                                     System.out.print("Введите категорию бюджета: ");
+                                    budgetName = scanner.next();
+                                    System.out.println("Введите сумму бюджета: ");
+                                    budgetValue = scanner.nextInt();
+                                    wallet.setBudget(budgetName, budgetValue);
+                                    System.out.println();
                                     break;
                                 }
                                 case (4): {
