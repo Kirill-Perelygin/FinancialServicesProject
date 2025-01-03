@@ -4,10 +4,8 @@ public class Main extends Users {
 
     public static boolean nonAuthorised;
     public static boolean isLoggedIn;
-    public static boolean isAddingOver;
     public static int firstMenuChoice;
     public static int choiceWhenLogged;
-    public static int choiceToRepeatInformationAdding;
     public static String login;
     public static String password;
     public static String incomeName;
@@ -16,10 +14,6 @@ public class Main extends Users {
     public static Integer expenseValue;
     public static String budgetName;
     public static Integer budgetValue;
-
-    // TODO не работают нормально переходы в меню
-    // TODO добавить бюджет к каждой категории расходов
-
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

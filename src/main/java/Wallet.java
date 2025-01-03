@@ -14,11 +14,11 @@ public class Wallet implements Income, Expenses, Budget {
 
         for (Map.Entry<String, List<Integer>> entry : income.entrySet()) {
             String key = entry.getKey();
-            List<Integer> value = entry.getValue();
-            System.out.println(key + ": " + value);
+            List<Integer> values = entry.getValue();
+            int sumPerKey = values.stream().mapToInt(Integer::intValue).sum();
+            System.out.println(key + ": " + sumPerKey);
         }
     }
-
 
     public void getTotalExpenses(){
         int totalSum2 = expenses.values().stream()
@@ -27,10 +27,11 @@ public class Wallet implements Income, Expenses, Budget {
                 .sum();
         System.out.println("Сумма всех расходов равняется: " + totalSum2);
 
-        for (Map.Entry<String, List<Integer>> entry2 : expenses.entrySet()) {
-            String key2 = entry2.getKey();
-            List<Integer> value2 = entry2.getValue();
-            System.out.println(key2 + ": " + value2);
+        for (Map.Entry<String, List<Integer>> entry : expenses.entrySet()) {
+            String key = entry.getKey();
+            List<Integer> values = entry.getValue();
+            int sumPerKey = values.stream().mapToInt(Integer::intValue).sum();
+            System.out.println(key + ": " + sumPerKey);
         }
     }
 
