@@ -15,6 +15,10 @@ public class Main extends Users {
     public static String expenseName;
     public static Integer expenseValue;
 
+    // TODO не работают нормально переходы в меню
+    // TODO добавить бюджет к каждой категории расходов
+
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Wallet wallet = new Wallet();
@@ -27,9 +31,9 @@ public class Main extends Users {
             firstMenuChoice = scanner.nextInt();
             switch (firstMenuChoice) {
                 case (1): {
-                    System.out.println("Введите логин");
+                    System.out.print("Введите логин: ");
                     login = scanner.next();
-                    System.out.println("Введите пароль");
+                    System.out.print("Введите пароль: ");
                     password = scanner.next();
                     if (checkUser(login, password)) {
                         System.out.println("Привет, " + login + "!. Что будем делать?");
@@ -43,11 +47,12 @@ public class Main extends Users {
                             choiceWhenLogged = scanner.nextInt();
                             switch (choiceWhenLogged) {
                                 case (1): {
-                                    System.out.println("Введите категорию дохода");
+                                    System.out.print("Введите категорию дохода: ");
                                     incomeName = scanner.next();
-                                    System.out.println("Введите сумму дохода");
+                                    System.out.print("Введите сумму дохода: ");
                                     incomeValue = scanner.nextInt();
                                     wallet.addIncome(login, incomeName, incomeValue);
+                                    System.out.println();
                                     isAddingOver = false;
                                     break;
                                 }
@@ -61,9 +66,9 @@ public class Main extends Users {
                     }
                 }
                 case (2): {
-                    System.out.println("Введите логин");
+                    System.out.print("Введите логин: ");
                     login = scanner.next();
-                    System.out.println("Введите пароль");
+                    System.out.print("Введите пароль: ");
                     password = scanner.next();
                     createrUser(login, password);
                     break;
