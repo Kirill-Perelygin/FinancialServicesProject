@@ -75,24 +75,23 @@ public class Wallet implements Income, Expenses, Budget {
     }
 
     public void showBudgetDifference(String category) {
-        if (!expenses.containsKey(category)) {
-            System.out.println("Категория \"" + category + "\" не найдена.");
-            return;
+        for (Map.Entry<String, List<Integer>> entry : expenses.entrySet()) {
+            category = entry.getKey();
+            List<Integer> values = entry.getValue();
+
+            if (values.isEmpty()) {
+                System.out.println("Для категории \"" + category + "\" нет данных.");
+                continue;
+            }
+
+            // Предполагаем, что первый элемент списка — это бюджет
+            int budget = values.get(0);
+            // Суммируем все расходы, кроме первого элемента (бюджета)
+            int totalExpenses = values.stream().skip(1).mapToInt(Integer::intValue).sum();
+            int difference = budget - totalExpenses;
+
+            System.out.println(category + " " + budget + "Разница для категории \"" + category + "\": " + difference);
         }
-
-        List<Integer> values = expenses.get(category);
-        if (values.isEmpty()) {
-            System.out.println("Для категории \"" + category + "\" нет данных.");
-            return;
-        }
-
-        // Предполагаем, что первый элемент списка — это бюджет
-        int budget = values.get(0);
-        // Суммируем все расходы, кроме первого элемента (бюджета)
-        int totalExpenses = values.stream().skip(1).mapToInt(Integer::intValue).sum();
-        int difference = budget - totalExpenses;
-
-        System.out.println("Разница для категории \"" + category + "\": " + difference);
     }
 
     public static void main(String[] args) {
