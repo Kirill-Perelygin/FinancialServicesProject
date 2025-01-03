@@ -52,12 +52,17 @@ public class Main extends Users {
                                     incomeName = scanner.next();
                                     System.out.print("Введите сумму дохода: ");
                                     incomeValue = scanner.nextInt();
-                                    wallet.addIncome(login, incomeName, incomeValue);
+                                    wallet.addIncome(incomeName, incomeValue);
                                     System.out.println();
                                     break;
                                 }
                                 case (2): {
-                                    System.out.print("Введите категорию расхода: ");
+                                    System.out.print("Введите категорию расходов: ");
+                                    expenseName = scanner.next();
+                                    System.out.print("Введите сумму расхода: ");
+                                    expenseValue = scanner.nextInt();
+                                    wallet.addExpenses(expenseName, expenseValue);
+                                    System.out.println();
                                     break;
                                 }
                                 case (3): {
@@ -65,7 +70,9 @@ public class Main extends Users {
                                     break;
                                 }
                                 case (4): {
-                                    System.out.print("Вся информация");
+                                    System.out.println("Вся информация");
+                                    wallet.getTotalIncome();
+                                    wallet.getTotalExpense();
                                     break;
                                 }
                                 case (5): {
