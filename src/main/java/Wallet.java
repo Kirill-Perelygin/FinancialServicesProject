@@ -15,12 +15,9 @@ public class Wallet implements Income, Expenses, Budget {
         if (incomeValue < 0) {
             System.out.println("Сумма не может быть меньше нуля.");
         } else {
-            // Проверяем, есть ли уже список под ключом incomeName
             if (!income.containsKey(incomeName)) {
-                // Если списка еще нет, создаем новый и добавляем туда incomeValue
                 income.put(incomeName, new ArrayList<>(Collections.singletonList(incomeValue)));
             } else {
-                // Если список уже существует, просто добавляем новое значение в существующий список
                 income.get(incomeName).add(incomeValue);
             }
 

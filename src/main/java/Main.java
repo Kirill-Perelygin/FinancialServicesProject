@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main extends Users {
 
-    public static boolean isAuthorised;
+    public static boolean nonAuthorised;
     public static boolean isLoggedIn;
     public static boolean isAddingOver;
     public static int firstMenuChoice;
@@ -22,13 +22,13 @@ public class Main extends Users {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Wallet wallet = new Wallet();
-        System.out.println("Добро пожаловать");
-        isAuthorised = false;
-        while (!isAuthorised) {
-            System.out.println("Что будем делать?");
-            System.out.println("1. Авторизоваться");
-            System.out.println("2. Регистрироваться");
-            firstMenuChoice = scanner.nextInt();
+            nonAuthorised = true;
+            while (nonAuthorised) {
+                System.out.println("Добро пожаловать");
+                System.out.println("Что будем делать?");
+                System.out.println("1. Авторизоваться");
+                System.out.println("2. Регистрироваться");
+                firstMenuChoice = scanner.nextInt();
             switch (firstMenuChoice) {
                 case (1): {
                     System.out.print("Введите логин: ");
@@ -36,14 +36,15 @@ public class Main extends Users {
                     System.out.print("Введите пароль: ");
                     password = scanner.next();
                     if (checkUser(login, password)) {
-                        System.out.println("Привет, " + login + "!. Что будем делать?");
                         isLoggedIn = true;
-                        isAddingOver = true;
-                        while (isAddingOver) {
+                        nonAuthorised = false;
+                        while (isLoggedIn) {
+                            System.out.println("Привет, " + login + "!. Что будем делать?");
                             System.out.println("1. Добавить доходы");
                             System.out.println("2. Добавить расходы");
                             System.out.println("3. Установить бюджет");
-                            System.out.println("4. Вернуться назад");
+                            System.out.println("4. Вывести всю актуальную информацию");
+                            System.out.println("5. Вернуться назад");
                             choiceWhenLogged = scanner.nextInt();
                             switch (choiceWhenLogged) {
                                 case (1): {
@@ -53,18 +54,31 @@ public class Main extends Users {
                                     incomeValue = scanner.nextInt();
                                     wallet.addIncome(login, incomeName, incomeValue);
                                     System.out.println();
-                                    isAddingOver = false;
+                                    break;
+                                }
+                                case (2): {
+                                    System.out.print("Введите категорию расхода: ");
+                                    break;
+                                }
+                                case (3): {
+                                    System.out.print("Введите категорию бюджета: ");
                                     break;
                                 }
                                 case (4): {
+                                    System.out.print("Вся информация");
+                                    break;
+                                }
+                                case (5): {
                                     isLoggedIn = false;
+                                    nonAuthorised = true;
                                     break;
                                 }
                             }
-                            break;
                         }
                     }
+                break;
                 }
+
                 case (2): {
                     System.out.print("Введите логин: ");
                     login = scanner.next();
@@ -73,7 +87,10 @@ public class Main extends Users {
                     createrUser(login, password);
                     break;
                 }
+                default:
+                    ;
             }
-        }
+                }
+            }
+
     }
-}
