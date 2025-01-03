@@ -71,10 +71,12 @@ public class Main extends Users {
                                     break;
                                 }
                                 case (4): {
-                                    System.out.println("Вся информация");
+                                    System.out.println("Доходы");
                                     wallet.getTotalIncome();
+                                    System.out.println("Расходы");
                                     wallet.getTotalExpenses();
-                                    wallet.showBudgetDifference(expenseName);
+                                    System.out.println("Бюджет");
+                                    wallet.showBudgetDifference(budgetName);
                                     break;
                                 }
                                 case (5): {
