@@ -9,11 +9,11 @@ public class Main extends Users {
     public static String login;
     public static String password;
     public static String incomeName;
-    public static Integer incomeValue;
+    public static int incomeValue;
     public static String expenseName;
-    public static Integer expenseValue;
+    public static int expenseValue;
     public static String budgetName;
-    public static Integer budgetValue;
+    public static int budgetValue;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -76,7 +76,7 @@ public class Main extends Users {
                                     System.out.println("Расходы");
                                     wallet.getTotalExpenses();
                                     System.out.println("Бюджет");
-                                    wallet.showBudgetDifference(budgetName);
+                                    wallet.compareBudgetAndExpenses();
                                     break;
                                 }
                                 case (5): {

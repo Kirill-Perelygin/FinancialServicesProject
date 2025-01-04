@@ -38,7 +38,7 @@ public class Wallet implements Income, Expenses, Budget {
     public void showIncomeByCategories(String login, Integer value) {
     }
 
-    public void addIncome(String incomeName, Integer incomeValue) {
+    public void addIncome(String incomeName, int incomeValue) {
         if (incomeValue < 0) {
             System.out.println("Сумма не может быть меньше нуля.");
         } else {
@@ -49,6 +49,7 @@ public class Wallet implements Income, Expenses, Budget {
             }
         }
     }
+
     public void addExpenses(String expenseName, int expenseValue) {
         if (expenseValue < 0) {
             System.out.println("Сумма не может быть меньше нуля.");
@@ -60,46 +61,31 @@ public class Wallet implements Income, Expenses, Budget {
             }
         }
     }
-
-    public void setBudget(String budgetName, Integer budgetValue){
+    public void setBudget(String budgetName, int budgetValue){
         if (budgetValue < 0) {
-            System.out.println("Сумма не может быть меньше нуля.");
-        } else {
-            if (!budget.containsKey(budgetName)) {
-                budget.put(budgetName, new ArrayList<>(Collections.singletonList(budgetValue)));
-            } else {
-                budget.get(budgetName).add(budgetValue);
-            }
+            System.out.println("Сумма не может быть меньше нуля");
         }
-    }
-// TODO кажется бюджет считается неправильно - вместо него в категорию попадает расход, а не бюджет
-
-    public void showBudgetDifference(String category) {
-        for (Map.Entry<String, List<Integer>> entry : budget.entrySet()) {
-            category = entry.getKey();
-            List<Integer> values = entry.getValue();
-
-            if (values.isEmpty()) {
-                System.out.println("Для категории \"" + category + "\" нет данных.");
-                continue;
-            }
-
-            int sumPerKey = 0;
-            for (Map.Entry<String, List<Integer>> entry2 : expenses.entrySet()) {
-                String key2 = entry.getKey();
-                List<Integer> values2 = entry2.getValue();
-                sumPerKey = values2.stream().mapToInt(Integer::intValue).sum();
-            }
-
-            // Предполагаем, что первый элемент списка — это бюджет
-            int budget = values.get(0);
-            // Суммируем все расходы, кроме первого элемента (бюджета)
-            int totalExpenses = values.stream().skip(1).mapToInt(Integer::intValue).sum();
-            int difference = budget - sumPerKey;
-            System.out.println(category + ":" + budget + " Оставшийся бюджет: " + difference);
+        else {
+            budget.put(budgetName, budgetValue);
         }
     }
 
+    public void compareBudgetAndExpenses() {
+        for (Map.Entry<String, Integer> entry : budget.entrySet()) {
+            String category = entry.getKey();
+            int budgetAmount = entry.getValue();
+            int totalExpenses = 0;
+
+            if (expenses.containsKey(category)) {
+                for (int expense : expenses.get(category)) {
+                    totalExpenses += expense;
+                }
+            }
+            int difference = budgetAmount - totalExpenses;
+            System.out.println(category + " : " + budgetAmount + ". Оставшийся бюджет: " + difference);
+        }
+    }
+    
     public static void main(String[] args) {
     }
 }
