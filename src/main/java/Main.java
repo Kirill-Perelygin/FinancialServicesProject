@@ -19,9 +19,9 @@ public class Main extends Users {
         Scanner scanner = new Scanner(System.in);
         Wallet wallet = new Wallet();
             nonAuthorised = true;
-            while (nonAuthorised) {
                 System.out.println("Добро пожаловать");
-                System.out.println("Что будем делать?");
+        while (nonAuthorised) {
+            System.out.println("Что будем делать?");
                 System.out.println("1. Авторизоваться");
                 System.out.println("2. Регистрироваться");
                 firstMenuChoice = scanner.nextInt();
