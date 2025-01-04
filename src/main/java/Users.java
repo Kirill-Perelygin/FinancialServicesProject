@@ -1,8 +1,6 @@
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 public class Users {
-    static Wallet wallet = new Wallet();
     public static HashMap<String, String> users = new HashMap<>();
 
     public static void createrUser(String login, String password) {

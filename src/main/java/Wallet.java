@@ -35,9 +35,6 @@ public class Wallet implements Income, Expenses, Budget {
         }
     }
 
-    public void showIncomeByCategories(String login, Integer value) {
-    }
-
     public void addIncome(String incomeName, int incomeValue) {
         if (incomeValue < 0) {
             System.out.println("Сумма не может быть меньше нуля.");
@@ -85,7 +82,7 @@ public class Wallet implements Income, Expenses, Budget {
             System.out.println(category + " : " + budgetAmount + ". Оставшийся бюджет: " + difference);
         }
     }
-    
+
     public static void main(String[] args) {
     }
 }
