@@ -18,8 +18,7 @@ public class Main extends Users {
 
     private static void exitProgram() {
         try {
-            Users.saveUsersToFile();     // Сохраняем пользователей
-            Wallet.saveWalletToFile();   // Сохраняем кошелек
+            Users.saveUsersToFile();
         } catch (IOException e) {
             System.err.println("Ошибка записи данных в файл: " + e.getMessage());
         }
@@ -32,21 +31,19 @@ public class Main extends Users {
         Wallet wallet = new Wallet();
 
         try {
-            Users.loadUsersFromFile();   // Попытка загрузить пользователей
-            Wallet.loadWalletFromFile(); // Попытка загрузить кошелек
+            Users.loadUsersFromFile();
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("Ошибка чтения данных из файла: " + e.getMessage());
         }
 
-
-
-            nonAuthorised = true;
-                System.out.println("Добро пожаловать");
+        nonAuthorised = true;
+        System.out.println("Добро пожаловать");
         while (nonAuthorised) {
             System.out.println("Что будем делать?");
-                System.out.println("1. Авторизоваться");
-                System.out.println("2. Регистрироваться");
-                firstMenuChoice = scanner.nextInt();
+            System.out.println("1. Авторизоваться");
+            System.out.println("2. Регистрироваться");
+            System.out.println("3. Выйти из программы");
+            firstMenuChoice = scanner.nextInt();
             switch (firstMenuChoice) {
                 case (1): {
                     System.out.print("Введите логин: ");
@@ -102,7 +99,6 @@ public class Main extends Users {
                                     break;
                                 }
                                 case (5): {
-                                    exitProgram();
                                     isLoggedIn = false;
                                     nonAuthorised = true;
                                     break;
@@ -110,7 +106,7 @@ public class Main extends Users {
                             }
                         }
                     }
-                break;
+                    break;
                 }
 
                 case (2): {
@@ -121,10 +117,15 @@ public class Main extends Users {
                     createrUser(login, password);
                     break;
                 }
+
+                case (3): {
+                    exitProgram();
+                    break;
+                }
                 default:
                     ;
             }
-                }
-            }
-
+        }
     }
+
+}

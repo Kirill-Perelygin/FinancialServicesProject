@@ -2,7 +2,6 @@ import java.io.*;
 import java.util.*;
 
 public class Wallet implements Income, Expenses, Budget, Serializable {
-    public static String incomeBoundary;
 
     public static LinkedHashMap<String, LinkedHashMap<String, Integer>> wallet = new LinkedHashMap<>();
 
@@ -21,7 +20,7 @@ public class Wallet implements Income, Expenses, Budget, Serializable {
         }
     }
 
-    public void getTotalExpenses(){
+    public void getTotalExpenses() {
         int totalSum2 = expenses.values().stream()
                 .flatMap(List::stream)
                 .mapToInt(Integer::intValue)
@@ -59,11 +58,11 @@ public class Wallet implements Income, Expenses, Budget, Serializable {
             }
         }
     }
-    public void setBudget(String budgetName, int budgetValue){
+
+    public void setBudget(String budgetName, int budgetValue) {
         if (budgetValue < 0) {
             System.out.println("Сумма не может быть меньше нуля");
-        }
-        else {
+        } else {
             budget.put(budgetName, budgetValue);
         }
     }
@@ -81,18 +80,6 @@ public class Wallet implements Income, Expenses, Budget, Serializable {
             }
             int difference = budgetAmount - totalExpenses;
             System.out.println(category + " : " + budgetAmount + ". Оставшийся бюджет: " + difference);
-        }
-    }
-
-    public static void saveWalletToFile() throws IOException {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("wallet.dat"))) {
-            oos.writeObject(wallet);
-        }
-    }
-
-    public static void loadWalletFromFile() throws IOException, ClassNotFoundException {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("wallet.dat"))) {
-            wallet = (LinkedHashMap<String, LinkedHashMap<String, Integer>>) ois.readObject();
         }
     }
 
