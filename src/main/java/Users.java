@@ -1,6 +1,7 @@
+import java.io.*;
 import java.util.HashMap;
 
-public class Users {
+public class Users implements Serializable {
     public static HashMap<String, String> users = new HashMap<>();
 
     public static void createrUser(String login, String password) {
@@ -22,6 +23,18 @@ public class Users {
            System.out.println("Такого пользователя не знаем");
            return false;
        }
+    }
+
+    public static void saveUsersToFile() throws IOException {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("users.dat"))) {
+            oos.writeObject(users);
+        }
+    }
+
+    public static void loadUsersFromFile() throws IOException, ClassNotFoundException {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("users.dat"))) {
+            users = (HashMap<String, String>) ois.readObject();
+        }
     }
 
     public static void main(String[] args) {

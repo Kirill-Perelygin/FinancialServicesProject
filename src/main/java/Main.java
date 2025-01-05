@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main extends Users {
@@ -15,9 +16,30 @@ public class Main extends Users {
     public static String budgetName;
     public static int budgetValue;
 
+    private static void exitProgram() {
+        try {
+            Users.saveUsersToFile();     // Сохраняем пользователей
+            Wallet.saveWalletToFile();   // Сохраняем кошелек
+        } catch (IOException e) {
+            System.err.println("Ошибка записи данных в файл: " + e.getMessage());
+        }
+
+        System.exit(0); // Завершаем программу
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Wallet wallet = new Wallet();
+
+        try {
+            Users.loadUsersFromFile();   // Попытка загрузить пользователей
+            Wallet.loadWalletFromFile(); // Попытка загрузить кошелек
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Ошибка чтения данных из файла: " + e.getMessage());
+        }
+
+
+
             nonAuthorised = true;
                 System.out.println("Добро пожаловать");
         while (nonAuthorised) {
@@ -80,6 +102,7 @@ public class Main extends Users {
                                     break;
                                 }
                                 case (5): {
+                                    exitProgram();
                                     isLoggedIn = false;
                                     nonAuthorised = true;
                                     break;
