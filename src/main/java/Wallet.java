@@ -1,7 +1,7 @@
+import java.io.*;
 import java.util.*;
 
-public class Wallet implements Income, Expenses, Budget {
-    public static String incomeBoundary;
+public class Wallet implements Income, Expenses, Budget, Serializable {
 
     public static LinkedHashMap<String, LinkedHashMap<String, Integer>> wallet = new LinkedHashMap<>();
 
@@ -20,7 +20,7 @@ public class Wallet implements Income, Expenses, Budget {
         }
     }
 
-    public void getTotalExpenses(){
+    public void getTotalExpenses() {
         int totalSum2 = expenses.values().stream()
                 .flatMap(List::stream)
                 .mapToInt(Integer::intValue)
@@ -58,11 +58,11 @@ public class Wallet implements Income, Expenses, Budget {
             }
         }
     }
-    public void setBudget(String budgetName, int budgetValue){
+
+    public void setBudget(String budgetName, int budgetValue) {
         if (budgetValue < 0) {
             System.out.println("Сумма не может быть меньше нуля");
-        }
-        else {
+        } else {
             budget.put(budgetName, budgetValue);
         }
     }

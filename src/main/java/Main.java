@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main extends Users {
@@ -15,16 +16,34 @@ public class Main extends Users {
     public static String budgetName;
     public static int budgetValue;
 
+    private static void exitProgram() {
+        try {
+            Users.saveUsersToFile();
+        } catch (IOException e) {
+            System.err.println("Ошибка записи данных в файл: " + e.getMessage());
+        }
+
+        System.exit(0); // Завершаем программу
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Wallet wallet = new Wallet();
-            nonAuthorised = true;
-            while (nonAuthorised) {
-                System.out.println("Добро пожаловать");
-                System.out.println("Что будем делать?");
-                System.out.println("1. Авторизоваться");
-                System.out.println("2. Регистрироваться");
-                firstMenuChoice = scanner.nextInt();
+
+        try {
+            Users.loadUsersFromFile();
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Ошибка чтения данных из файла: " + e.getMessage());
+        }
+
+        nonAuthorised = true;
+        System.out.println("Добро пожаловать");
+        while (nonAuthorised) {
+            System.out.println("Что будем делать?");
+            System.out.println("1. Авторизоваться");
+            System.out.println("2. Регистрироваться");
+            System.out.println("3. Выйти из программы");
+            firstMenuChoice = scanner.nextInt();
             switch (firstMenuChoice) {
                 case (1): {
                     System.out.print("Введите логин: ");
@@ -87,7 +106,7 @@ public class Main extends Users {
                             }
                         }
                     }
-                break;
+                    break;
                 }
 
                 case (2): {
@@ -98,10 +117,15 @@ public class Main extends Users {
                     createrUser(login, password);
                     break;
                 }
+
+                case (3): {
+                    exitProgram();
+                    break;
+                }
                 default:
                     ;
             }
-                }
-            }
-
+        }
     }
+
+}
